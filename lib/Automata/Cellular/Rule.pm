@@ -25,11 +25,10 @@ More information can also be found in the Perldoc for that module.
 David Brunton - dbrunton@gmail.com
 
 =end pod
-
 role Automata::Cellular::Rule {
 
-    has Bool %.rule;
-    has Int $.rule_number;
+    has Bool %.rule is rw;
+    has Int $.rule_number is rw;
 
     # submethod unpacks the rule number into a hash
     submethod BUILD (Int $.rule_number) {
@@ -41,7 +40,7 @@ role Automata::Cellular::Rule {
     # for "pretty" (being a relative term) output of the rule
     method pretty (Str $true = 'x', Str $false = '.') {
         my Str $rule_string = '';
-        for %.rule.kv -> $k,$v { 
+        for %.rule.kv -> $k,$v {
              $rule_string ~= "{sprintf("%03b",$k)} becomes {+$v}\n";
         }
         $rule_string.=subst(/0/, $false, :g);
@@ -49,5 +48,4 @@ role Automata::Cellular::Rule {
         return $rule_string;
     }
 
-}
-            
+} # role Automata::Cellular::Rule

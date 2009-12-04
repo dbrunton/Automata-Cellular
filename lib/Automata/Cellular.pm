@@ -1,4 +1,5 @@
 use v6;
+
 =begin pod
 
 =head1 NAME
@@ -41,50 +42,50 @@ David Brunton - dbrunton@gmail.com
 
 use Automata::Cellular::Rule;
 
-class Automata::Cellular 
-    does Automata::Cellular::Rule
+class Automata::Cellular does Automata::Cellular::Rule
 {
 
     # future enhancement: accept a $rule_number, and build a rule in BUILD
-    has Automata::Cellular::Rule $.rule;
+    has Automata::Cellular::Rule $.rule is rw;
     has Bool @.state is rw;
-    has Int  $.steps;
-    has Int  $.rule_number;
-    has Int  $.display_width;
+    has Int  $.steps is rw;
+    has Int  $.rule_number is rw;
+    has Int  $.display_width is rw;
     has Int  $.stage is rw;
 
     # used to set initial stage and defaults
-    submethod BUILD (:$.rule_number, 
+    submethod BUILD (:$.rule_number = 30,
                      :$.steps = 10,
                      :$.display_width = 30,
                      :$.stage = 1) {
 
-        $.rule = Automata::Cellular::Rule.new(:$.rule_number);
+        $.rule =
+Automata::Cellular::Rule.new(:rule_number($.rule_number));
 
         my $width = $.display_width + $.steps * 2;
-        
-        @.state = 0 xx $width;
-        @.state[int($width/2)] = 1;
-    }
 
+        @.state = Bool::False xx $width;
+        @.state[($width/2).Int] = Bool::True;
+    }
     # "pretty" being a relative term, on a terminal
     method prettystate (Str $true = 'x', Str $false = '.') {
-        my $state = (+<<@.state[$.steps..(@.state.elems() - $.steps)]).join(""); 
+        my $state = @.state[$.steps..(@.state.elems() -
+$.steps)].join("");
         $state.=subst(/0/, $false, :g);
         $state.=subst(/1/, $true, :g);
         "Stage $.stage: $state";
     }
 
-    method postfix:<++> () is export {
-        my @old_state = $.state;
+    method next () is export {
+        my @old_state = @.state;
         for ( 0 .. (@old_state.elems - 2) ) -> $index {
-            my $index_key =
-                :2((+<<@old_state[ $index .. $index + 2 ]).join(""));
-            $.state[ $index + 1 ] = $.rule.rule{$index_key};
+            my $index_key = :2(@old_state[ $index .. $index + 2
+].join(""));
+            @.state[ $index + 1 ] = $.rule.rule{$index_key};
         }
 
-        $.stage = $.stage + 1;
-        if $.stage >= $.steps { return Bool::False; }
+        $.stage++;
+        if $.stage > $.steps { return Bool::False; }
         else { return Bool::True; }
     }
 
