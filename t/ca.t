@@ -1,6 +1,7 @@
 use v6;
 use Test;
 
+BEGIN { @*INC.push('../lib') };
 plan 6;
 
 use Automata::Cellular::Rule; pass('Automata::Cellular::Rule loaded');

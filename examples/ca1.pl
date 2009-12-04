@@ -1,4 +1,5 @@
 use v6;
+BEGIN { @*INC.push('../lib') };
 use Automata::Cellular;
 use Automata::Cellular::Rule;
 

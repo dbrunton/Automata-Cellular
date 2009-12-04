@@ -1,4 +1,5 @@
 use v6;
+=begin pod
 
 =head1 NAME
 
@@ -36,11 +37,11 @@ C<Automata::Cellular> is written in Perl 6, and currently runs via Pugs
 
 David Brunton - dbrunton@gmail.com
 
-=cut
+=end pod
 
 use Automata::Cellular::Rule;
 
-class Automata::Cellular-0.1 
+class Automata::Cellular 
     does Automata::Cellular::Rule
 {
 
@@ -69,8 +70,8 @@ class Automata::Cellular-0.1
     # "pretty" being a relative term, on a terminal
     method prettystate (Str $true = 'x', Str $false = '.') {
         my $state = (+<<@.state[$.steps..(@.state.elems() - $.steps)]).join(""); 
-        $state ~~ s:g/0/$false/;
-        $state ~~ s:g/1/$true/;
+        $state.=subst(/0/, $false, :g);
+        $state.=subst(/1/, $true, :g);
         "Stage $.stage: $state";
     }
 

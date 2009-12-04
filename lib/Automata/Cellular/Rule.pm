@@ -1,5 +1,7 @@
 use v6;
 
+=begin pod
+
 =head1 NAME
 
 Automata::Cellular::Rule - Build and render Cellular Automata Wolfram-style
@@ -22,7 +24,7 @@ More information can also be found in the Perldoc for that module.
 
 David Brunton - dbrunton@gmail.com
 
-=cut
+=end pod
 
 role Automata::Cellular::Rule {
 
@@ -42,8 +44,8 @@ role Automata::Cellular::Rule {
         for %.rule.kv -> $k,$v { 
              $rule_string ~= "{sprintf("%03b",$k)} becomes {+$v}\n";
         }
-        $rule_string ~~ s:g/1/$true/;
-        $rule_string ~~ s:g/0/$false/;
+        $rule_string.=subst(/0/, $false, :g);
+        $rule_string.=subst(/1/, $true, :g);
         return $rule_string;
     }
 
