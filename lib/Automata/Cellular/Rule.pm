@@ -1,4 +1,4 @@
-use v6-alpha;
+use v6;
 
 =head1 NAME
 
@@ -20,7 +20,7 @@ More information can also be found in the Perldoc for that module.
 
 =head1 AUTHOR
 
-David Brunton - dbrunton@plusthree.com
+David Brunton - dbrunton@gmail.com
 
 =cut
 

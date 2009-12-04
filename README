@@ -1,6 +1,7 @@
 Automata::Cellular provides Perl 6 interfaces to print the output of
-Wolfram-style cellular automata to a terminal.  It is not a port of
-anything in Perl 5, other than a script whose port to Perl 6 is included
-in ext/ca_wolfram.pl.
+cellular automata to a terminal.  It is not a port of anything in Perl 5,
+other than a script whose port to Perl 6 is included in ext/ca_wolfram.pl.
 
-Test.
+I have used some conventions from Stephen Wolfram's paper "Cellular
+Automata" that I really like: unpacking an integer number as a transition
+table, and I expect to expand on this idea.

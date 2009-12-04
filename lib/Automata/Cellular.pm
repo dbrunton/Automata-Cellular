@@ -1,4 +1,4 @@
-use v6-alpha;
+use v6;
 
 =head1 NAME
 
@@ -34,7 +34,7 @@ C<Automata::Cellular> is written in Perl 6, and currently runs via Pugs
 
 =head1 AUTHOR
 
-David Brunton - dbrunton@plusthree.com
+David Brunton - dbrunton@gmail.com
 
 =cut
 
