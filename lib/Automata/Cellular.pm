@@ -79,8 +79,7 @@ $.steps)].join("");
     method next () is export {
         my @old_state = @.state;
         for ( 0 .. (@old_state.elems - 2) ) -> $index {
-            my $index_key = :2(@old_state[ $index .. $index + 2
-].join(""));
+            my $index_key = :2(@old_state[ $index .. $index + 2 ].join(""));
             @.state[ $index + 1 ] = $.rule.rule{$index_key};
         }
 
