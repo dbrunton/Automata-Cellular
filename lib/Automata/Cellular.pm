@@ -30,7 +30,7 @@ C<Automata::Cellular> is written in Perl 6, and currently runs via Pugs
     my Automata::Cellular::Rule $rule .= new(30);
     my Automata::Cellular $ca .= new( :@state, :$rule, :$steps, :$display_width);
 
-    while($ca.next()) {
+    while $ca.next() {
         say $ca.prettystate();
     }
 
@@ -71,19 +71,18 @@ class Automata::Cellular does Automata::Cellular::Rule
         my $state = @.state[$.steps..(@.state.elems() - $.steps)].join("");
         $state.=subst(/0/, $false, :g);
         $state.=subst(/1/, $true, :g);
-        "Stage $.stage: $state";
+        "Stage " ~ $.stage.fmt('%3d') ~ ": $state";
     }
 
     method next () is export {
         my @old_state = @.state;
-        for ( 0 .. (@old_state.elems - 2) ) -> $index {
+        for 0 .. (@old_state.elems - 3) -> $index {
             my $index_key = :2(@old_state[ $index .. $index + 2 ].join(""));
             @.state[ $index + 1 ] = $.rule.rule{$index_key};
         }
 
         $.stage++;
-        if $.stage > $.steps { return Bool::False; }
-        else { return Bool::True; }
+        return $.stage <= $.steps;
     }
 
 } # class Automata::Cellular

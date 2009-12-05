@@ -7,6 +7,6 @@ my Automata::Cellular $ca .= new(:rule_number(30));
 say "Rule Number " ~ $ca.rule.rule_number();
 say $ca.rule.pretty();
 say $ca.prettystate();
-while ( $ca.next() ) {
+while $ca.next() {
   say $ca.prettystate();
 }

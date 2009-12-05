@@ -32,7 +32,7 @@ role Automata::Cellular::Rule {
 
     # submethod unpacks the rule number into a hash
     submethod BUILD (Int $.rule_number) {
-        for ( 0 .. 7 ) -> $key {
+        for 0..7 -> $key {
             %.rule{$key} = ?($.rule_number +& (1 ~ 0 x $key) );
         }
     }
