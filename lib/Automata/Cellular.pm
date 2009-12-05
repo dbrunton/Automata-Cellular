@@ -59,8 +59,7 @@ class Automata::Cellular does Automata::Cellular::Rule
                      :$.display_width = 30,
                      :$.stage = 1) {
 
-        $.rule =
-Automata::Cellular::Rule.new(:rule_number($.rule_number));
+        $.rule = Automata::Cellular::Rule.new(:rule_number($.rule_number));
 
         my $width = $.display_width + $.steps * 2;
 
@@ -69,8 +68,7 @@ Automata::Cellular::Rule.new(:rule_number($.rule_number));
     }
     # "pretty" being a relative term, on a terminal
     method prettystate (Str $true = 'x', Str $false = '.') {
-        my $state = @.state[$.steps..(@.state.elems() -
-$.steps)].join("");
+        my $state = @.state[$.steps..(@.state.elems() - $.steps)].join("");
         $state.=subst(/0/, $false, :g);
         $state.=subst(/1/, $true, :g);
         "Stage $.stage: $state";
