@@ -6,4 +6,4 @@ I have used some conventions from Stephen Wolfram's paper "Cellular
 Automata" that I really like: unpacking an integer number as a transition
 table, and I expect to expand on this idea.
 
-It works, for the most part, in Rakudo.
+It has been tested in Rakudo Perl.
