@@ -30,7 +30,7 @@ C<Automata::Cellular> is written in Perl 6, and currently runs via Pugs
     my Automata::Cellular::Rule $rule .= new(30);
     my Automata::Cellular $ca .= new( :@state, :$rule, :$steps, :$display_width);
 
-    while($ca++) {
+    while($ca.next()) {
         say $ca.prettystate();
     }
 
