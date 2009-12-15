@@ -68,10 +68,7 @@ class Automata::Cellular does Automata::Cellular::Rule
     }
     # "pretty" being a relative term, on a terminal
     method prettystate (Str $true = 'x', Str $false = '.') {
-        my $state = @.state[$.steps..(@.state.elems() - $.steps)].join("");
-        $state.=subst(/0/, $false, :g);
-        $state.=subst(/1/, $true, :g);
-        "Stage " ~ $.stage.fmt('%3d') ~ ": $state";
+        (($false,$true)[@.state[$.steps..(@.state.elems() - $.steps)]]).join("")
     }
 
     method next () is export {
