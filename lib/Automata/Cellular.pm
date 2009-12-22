@@ -42,16 +42,16 @@ David Brunton - dbrunton@gmail.com
 
 use Automata::Cellular::Rule;
 
-class Automata::Cellular does Automata::Cellular::Rule
+class Automata::Cellular does Automata::Cellular::Rule is rw
 {
 
     # future enhancement: accept a $rule_number, and build a rule in BUILD
-    has Automata::Cellular::Rule $.rule is rw;
-    has Bool @.state is rw;
-    has Int  $.steps is rw;
-    has Int  $.rule_number is rw;
-    has Int  $.display_width is rw;
-    has Int  $.stage is rw;
+    has Automata::Cellular::Rule $.rule;
+    has Bool @.state;
+    has Int  $.steps;
+    has Int  $.rule_number;
+    has Int  $.display_width;
+    has Int  $.stage;
 
     # used to set initial stage and defaults
     submethod BUILD (:$.rule_number = 30,

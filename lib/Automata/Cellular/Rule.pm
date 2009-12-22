@@ -25,10 +25,10 @@ More information can also be found in the Perldoc for that module.
 David Brunton - dbrunton@gmail.com
 
 =end pod
-role Automata::Cellular::Rule {
+role Automata::Cellular::Rule is rw {
 
-    has Bool %.rule is rw;
-    has Int $.rule_number is rw;
+    has Bool %.rule;
+    has Int $.rule_number;
 
     # submethod unpacks the rule number into a hash
     submethod BUILD (Int $.rule_number) {
