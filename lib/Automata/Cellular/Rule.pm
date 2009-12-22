@@ -37,8 +37,8 @@ role Automata::Cellular::Rule {
         }
     }
 
-    # for "pretty" (being a relative term) output of the rule
-    method pretty (Str $true = 'x', Str $false = '.') {
+    # print the rule in string context
+    method Str (Str $true = 'x', Str $false = '.') {
         my Str $rule_string = '';
         for %.rule.kv -> $k,$v {
              $rule_string ~= "{sprintf("%03b",$k)} becomes {+$v}\n";
@@ -46,6 +46,11 @@ role Automata::Cellular::Rule {
         $rule_string.=subst(/0/, $false, :g);
         $rule_string.=subst(/1/, $true, :g);
         return $rule_string;
+    }
+
+    # print the rule in numeric context
+    method Num () {
+        return $.rule_number.Int;
     }
 
 } # role Automata::Cellular::Rule

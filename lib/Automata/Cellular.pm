@@ -31,7 +31,7 @@ C<Automata::Cellular> is written in Perl 6, and currently runs via Pugs
     my Automata::Cellular $ca .= new( :@state, :$rule, :$steps, :$display_width);
 
     while $ca.next() {
-        say $ca.prettystate();
+        say $ca.Str();
     }
 
 =head1 AUTHOR
@@ -67,7 +67,7 @@ class Automata::Cellular does Automata::Cellular::Rule
         @.state[($width/2).Int] = Bool::True;
     }
     # "pretty" being a relative term, on a terminal
-    method prettystate (Str $true = 'x', Str $false = '.') {
+    method Str (Str $true = 'x', Str $false = '.') {
         (($false,$true)[@.state[$.steps..(@.state.elems() - $.steps)]]).join("")
     }
 
