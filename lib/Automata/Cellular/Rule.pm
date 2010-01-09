@@ -40,15 +40,17 @@ role Automata::Cellular::Rule is rw {
     # print the rule in string context
     method Str (Str $true = 'x', Str $false = '.') {
         my Str $rule_string = '';
-        for %.rule.kv -> $k,$v {
-             $rule_string ~= "{sprintf("%03b",$k)} becomes {+$v}\n";
+        # not sure why I can't just %(self) here....
+        for %(self.Hash()).kv -> $k,$v {
+             $rule_string ~= "'$k' becomes '$v'\n";
         }
-        $rule_string.=subst(/0/, $false, :g);
-        $rule_string.=subst(/1/, $true, :g);
         return $rule_string;
+   }
+
+    method Hash (Str $true = 'x', Str $false = '.') {
+       map { (([$false, $true][sprintf("%03b",$_).split("")]).join("") => [$false, $true][%.rule{$_}]) }, %.rule.keys;
     }
 
-    # print the rule in numeric context
     method Num () {
         return $.rule_number.Int;
     }
