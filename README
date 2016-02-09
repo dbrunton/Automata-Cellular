@@ -1,13 +1,3 @@
-Automata::Cellular provides Perl 6 interfaces to print the output of
-cellular automata to a terminal.  It is not a port of anything in Perl 5,
-other than a script whose port to Perl 6 is included in ext/ca_wolfram.pl.
+Wolfram elementary cellular automata in Perl6.
 
-I have used some conventions from Stephen Wolfram's paper "Cellular
-Automata" that I really like: unpacking an integer number as a transition
-table, and I expect to expand on this idea.
-
-It has been tested in Rakudo Perl.
-
-There are some nice semantics demonstrated here.  Specifically, a Rule
-understands Num, Str, and Hash context.  Thanks to all of #perl6 for
-helping me grok those
+See http://mathworld.wolfram.com/ElementaryCellularAutomaton.html
