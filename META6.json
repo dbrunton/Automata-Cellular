@@ -1,7 +1,7 @@
 {
   "perl" : "6.*",
   "name" : "Automata::Cellular",
-  "version" : "0.2.0",
+  "version" : "0.2.1",
   "description" : "Cellular Automata in Perl6",
   "authors" : "David Brunton, Tommy Brunton",
   "source-url" : "git://github.com/dbrunton/Automata-Cellular.git"

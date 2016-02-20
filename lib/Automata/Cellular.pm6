@@ -24,7 +24,7 @@ role Rule {
 
 class Wolfram does Rule {
   has Rule $.rule .= new(:$!number);
-  has Str @.format = <. #>;
+  has Str @.format = <. X>;
   has Int $.width = 101;
   has Int $!steps = $!width div 2;
   has Int @!state = flat 0 xx $!steps, 1, 0 xx $!steps;
@@ -34,6 +34,10 @@ class Wolfram does Rule {
       say @!format[@!state].join;
       self.next();
     }
+  }
+
+  method current() returns Str:D {
+    return @!format[@!state].join;
   }
 
   method next() {
