@@ -40,7 +40,7 @@ class Wolfram does Rule {
     return @!format[@!state].join;
   }
 
-  method next() {
+  method succ() {
     @!state = map { +$!rule.rules{ @!state[($_-1) % $!width, $_, ($_+1) % $!width].join } }, ^$!width;
   }
 }
