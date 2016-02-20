@@ -7,20 +7,20 @@ output of Wolfram automata.
 
 role Rule {
   has Int $.number is required;
-  has %.rules = [^8]>>.fmt("%03b") Z=> $!number.fmt("%08b").split("",:skip-empty).reverse;
+  has %.hash = [^8]>>.fmt("%03b") Z=> $!number.fmt("%08b").split("",:skip-empty).reverse;
 
   # Prettyprint the rule
   method Str() returns Str {
 
     my $rulestring = sprintf("Rule %d subrules:\n", $!number);
 
-    for %!rules.sort(*.key)>>.kv -> ($k, $v) {
+    for %!hash.sort(*.key)>>.kv -> ($k, $v) {
       $rulestring ~= sprintf("%s => %s\n", $k, $v);
     }
     return $rulestring;
   }
 
-  method Numeric() returns Numeric:D {
+  method Numeric() returns Int:D {
     return $.number;
   }
 
@@ -45,6 +45,6 @@ class Wolfram does Rule {
   }
 
   method succ() {
-    @!state = map { +$!rule.rules{ @!state[($_-1) % $!width, $_, ($_+1) % $!width].join } }, ^$!width;
+    @!state = map { +$!rule.hash{ @!state[($_-1) % $!width, $_, ($_+1) % $!width].join } }, ^$!width;
   }
 }
