@@ -20,6 +20,10 @@ role Rule {
     return $rulestring;
   }
 
+  method Numeric() returns Numeric:D {
+    return $.number;
+  }
+
 }
 
 class Wolfram does Rule {
