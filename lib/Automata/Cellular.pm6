@@ -36,7 +36,7 @@ class Wolfram does Rule {
   method run() {
     for ^$!steps {
       say @!format[@!state].join;
-      self.next();
+      self.succ();
     }
   }
 
